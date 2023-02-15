@@ -1,23 +1,30 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route} from 'react-router-dom';
-import { StylesProvider } from '@material-ui/core/styles';
+import { Router, Switch, Route } from "react-router-dom";
+import {
+  StylesProvider,
+  createGenerateClassName,
+} from "@material-ui/core/styles";
 
-import Landing from './components/Landing';
-import Pricing from './components/Pricing';
+import Landing from "./components/Landing";
+import Pricing from "./components/Pricing";
 
-const App = () => {
-	return (
-		<>
-			<StylesProvider>
-				<BrowserRouter>
-					<Switch>
-						<Route exact path="/pricing" component={Pricing}/>
-						<Route path="/" component={Landing} />
-					</Switch>
-				</BrowserRouter>
-			</StylesProvider>
-		</>
-	)
-}
+const generateClassName = createGenerateClassName({
+  productionPrefix: "ma",
+});
+
+const App = ({ history }) => {
+  return (
+    <>
+      <StylesProvider generateClassName={generateClassName}>
+        <Router history={history}>
+          <Switch>
+            <Route exact path="/pricing" component={Pricing} />
+            <Route path="/" component={Landing} />
+          </Switch>
+        </Router>
+      </StylesProvider>
+    </>
+  );
+};
 
 export default App;
