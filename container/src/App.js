@@ -23,11 +23,11 @@ const App = () => {
           />
           <Suspense fallback={<ProgressBar />}>
             <Switch>
-              <Route path="/" exact>
-                <MarketingLazay />
-              </Route>
               <Route path="/auth">
                 <AuthLazay onSignIn={() => setIsSignedIn(true)} />
+              </Route>
+              <Route path="/">
+                <MarketingLazay />
               </Route>
             </Switch>
           </Suspense>
